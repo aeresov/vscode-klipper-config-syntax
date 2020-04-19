@@ -66,6 +66,22 @@
 			"name": "support.type",
 			"match": "\\/dev\\/serial\\/by-(id|path)\\/[\\d\\w\\/\\-:\\.]+"
 		},
+		"pin": {
+			"patterns": [
+				{
+					"name": "support.type",
+					"match": "[\\^~!]*ar\\d{1,2}"
+				},
+				{
+					"name": "support.type",
+					"match": "[\\^~!]*analog\\d{1,2}"
+				},
+				{
+					"name": "support.type",
+					"match": "[\\^~!]*(z:)?\\w{1,2}\\d{1,2}(\\.\\d{1,2})?"
+				}
+			]
+		},
 		"config_line": {
 			"patterns": [
 				{
@@ -88,6 +104,9 @@
 						},
 						{
 							"include": "#serial"
+						},
+						{
+							"include": "#pin"
 						},
 						{
 							"include": "#known_thermistor_type"
