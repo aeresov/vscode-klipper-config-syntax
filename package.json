@@ -1,0 +1,42 @@
+{
+    "name": "klipper-config",
+    "displayName": "Klipper Config",
+    "description": "Syntax highlighting for Klipper config files",
+    "version": "0.1.1",
+    "publisher": "aeresov",
+    "license": "read LICENSE file",
+    "engines": {
+        "vscode": "^1.44.0"
+    },
+    "homepage": "https://github.com/aeresov/klipper-config-syntax/blob/master/README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aeresov/vscode-klipper-config-syntax.git"
+    },
+    "icon": "images/klipper-logo.png",
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "klipper-config",
+                "aliases": [
+                    "Klipper Config",
+                    "klipper-config"
+                ],
+                "extensions": [
+                    ".cfg"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "klipper-config",
+                "scopeName": "source.klipper-config",
+                "path": "./syntaxes/klipper-config.tmLanguage.json"
+            }
+        ]
+    }
+}
