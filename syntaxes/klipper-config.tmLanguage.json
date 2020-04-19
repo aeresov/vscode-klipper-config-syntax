@@ -62,6 +62,10 @@
 			"name": "support.type",
 			"match": "\\b(hd44780|st7920|uc1701|ssd1306|sh1106)\\b"
 		},
+		"serial": {
+			"name": "support.type",
+			"match": "\\/dev\\/serial\\/by-(id|path)\\/[\\d\\w\\/\\-:\\.]+"
+		},
 		"config_line": {
 			"patterns": [
 				{
@@ -81,6 +85,9 @@
 						},
 						{
 							"include": "#boolean"
+						},
+						{
+							"include": "#serial"
 						},
 						{
 							"include": "#known_thermistor_type"
