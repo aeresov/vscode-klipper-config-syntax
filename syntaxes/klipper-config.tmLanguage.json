@@ -18,8 +18,16 @@
 			"match": "#(.+)$"
 		},
 		"number": {
-			"name": "constant.numeric",
-			"match": "\\b\\d+(\\.\\d+)?\\b"
+			"patterns": [
+				{
+					"name": "constant.numeric",
+					"match": "\\-?\\d+([\\.,]\\d+)?\\b"
+				},
+				{
+					"name": "constant.numeric",
+					"match": "\\-?[\\.,]\\d+?\\b"
+				}
+			]
 		},
 		"boolean": {
 			"name": "constant.language",
@@ -78,7 +86,7 @@
 				},
 				{
 					"name": "support.type",
-					"match": "[\\^~!]*(z:)?\\w{1,2}\\d{1,2}(\\.\\d{1,2})?"
+					"match": "[\\^~!]*(z:)?[a-zA-Z]{1,2}\\d{1,2}(\\.\\d{1,2})?"
 				}
 			]
 		},
@@ -94,21 +102,6 @@
 					"end": "$",
 					"patterns": [
 						{
-							"include": "#single_line_comment"
-						},
-						{
-							"include": "#number"
-						},
-						{
-							"include": "#boolean"
-						},
-						{
-							"include": "#serial"
-						},
-						{
-							"include": "#pin"
-						},
-						{
 							"include": "#known_thermistor_type"
 						},
 						{
@@ -119,8 +112,26 @@
 						},
 						{
 							"include": "#known_display_type"
+						},
+						{
+							"include": "#pin"
+						},
+						{
+							"include": "#serial"
+						},
+						{
+							"include": "#number"
+						},
+						{
+							"include": "#boolean"
+						},
+						{
+							"include": "#single_line_comment"
 						}
 					]
+				},
+				{
+					"include": "#number"
 				}
 			]
 		},
