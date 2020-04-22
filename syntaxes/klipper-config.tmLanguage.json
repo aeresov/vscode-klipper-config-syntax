@@ -14,8 +14,16 @@
 	],
 	"repository": {
 		"single_line_comment": {
-			"name": "comment.line.number-sign",
-			"match": "#(.+)$"
+			"patterns": [
+				{
+					"name": "comment.line.number-sign",
+					"match": "#(.+)$"
+				},
+				{
+					"name": "comment.line.gcode",
+					"match": ";(.+)$"
+				}
+			]
 		},
 		"number": {
 			"patterns": [
