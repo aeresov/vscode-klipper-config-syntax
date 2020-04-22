@@ -138,17 +138,6 @@
 					"include": "#number"
 				}
 			]
-		},
-		"strings": {
-			"name": "string.quoted.double.klipper",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.klipper",
-					"match": "\\\\."
-				}
-			]
 		}
 	},
 	"scopeName": "source.klipper-config"
