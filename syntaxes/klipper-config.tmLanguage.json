@@ -39,7 +39,7 @@
 		},
 		"boolean": {
 			"name": "constant.language",
-			"match": "\\b([Tt]rue|[Ff]alse)\\b"
+			"match": "(?i)\\b(true|false)\\b"
 		},
 		"config_block": {
 			"contentName": "keyword.control",
@@ -56,27 +56,27 @@
 		},
 		"known_config_block_name": {
 			"name": "storage.type",
-			"match": "\\b(ad5206|adc_temperature|bed_mesh|bed_screws|bed_tilt|bltouch|board_pins|controller_fan|delayed_gcode|delta_calibrate|display|display_data|display_template|dotstar|dual_carriage|endstop_phase|extruder_stepper|extruder[1-9]{0,1}|fan|filament_switch_sensor|firmware_retraction|force_move|gcode_arcs|gcode_button|gcode_macro|hall_filament_width_sensor|heater_bed|heater_fan|heater_generic|homing_heaters|homing_override|idle_timeout|include|manual_stepper|mcp4018|mcp4451|mcp4728|mcu|menu|multi_pin|neopixel|output_pin|pause_resume|printer|probe|quad_gantry_level|replicape|respond|safe_z_home|samd_sercom|screws_tilt_adjust|servo|skew_correction|static_digital_output|stepper_(bed|arm|[abcdxy]|z[1-9]{0,1})|sx1509|temperature_fan|temperature_sensor|thermistor|tsl1401cl_filament_width_sensor|verify_heater|virtual_sdcard|z_tilt)\\b"
+			"match": "(?i)\\b(ad5206|adc_temperature|bed_mesh|bed_screws|bed_tilt|bltouch|board_pins|controller_fan|delayed_gcode|delta_calibrate|display|display_data|display_template|dotstar|dual_carriage|endstop_phase|extruder_stepper|extruder[1-9]{0,1}|fan|filament_switch_sensor|firmware_retraction|force_move|gcode_arcs|gcode_button|gcode_macro|hall_filament_width_sensor|heater_bed|heater_fan|heater_generic|homing_heaters|homing_override|idle_timeout|include|manual_stepper|mcp4018|mcp4451|mcp4728|mcu|menu|multi_pin|neopixel|output_pin|pause_resume|printer|probe|quad_gantry_level|replicape|respond|safe_z_home|samd_sercom|screws_tilt_adjust|servo|skew_correction|static_digital_output|stepper_(bed|arm|[abcdxy]|z[1-9]{0,1})|sx1509|temperature_fan|temperature_sensor|thermistor|tsl1401cl_filament_width_sensor|verify_heater|virtual_sdcard|z_tilt)\\b"
 		},
 		"known_driver_type": {
 			"name": "support.type",
-			"match": "\\btmc(2130|2208|2209|2660|5160)\\b"
+			"match": "(?i)\\btmc(2130|2208|2209|2660|5160)\\b"
 		},
 		"known_thermistor_type": {
 			"name": "support.type",
-			"match": "\\b(EPCOS 100K B57560G104F|ATC Semitec 104GT-2|NTC 100K beta 3950|Honeywell 100K 135-104LAG-J01|NTC 100K MGB18-104F39050L32)\\b"
+			"match": "(?i)\\b(EPCOS 100K B57560G104F|ATC Semitec 104GT-2|NTC 100K beta 3950|Honeywell 100K 135-104LAG-J01|NTC 100K MGB18-104F39050L32)\\b"
 		},
 		"known_extruder_sensor_type": {
 			"name": "support.type",
-			"match": "\\b(MAX6675|MAX31855|MAX31856|MAX31865|PT100 INA826|AD595|AD8494|AD8495|AD8496|AD8497|PT1000|BME280)\\b"
+			"match": "(?i)\\b(MAX6675|MAX31855|MAX31856|MAX31865|PT100 INA826|AD595|AD8494|AD8495|AD8496|AD8497|PT1000|BME280)\\b"
 		},
 		"known_control_type": {
 			"name": "support.type",
-			"match": "\\b(watermark|pid)\\b"
+			"match": "(?i)\\b(watermark|pid)\\b"
 		},
 		"known_display_type": {
 			"name": "support.type",
-			"match": "\\b(hd44780|st7920|uc1701|ssd1306|sh1106)\\b"
+			"match": "(?i)\\b(hd44780|st7920|uc1701|ssd1306|sh1106)\\b"
 		},
 		"serial": {
 			"name": "support.type",
@@ -86,15 +86,11 @@
 			"patterns": [
 				{
 					"name": "support.type",
-					"match": "[\\^~!]*ar\\d{1,2}"
+					"match": "(?i)[\\^~!]*(ar|analog)\\d{1,2}"
 				},
 				{
 					"name": "support.type",
-					"match": "[\\^~!]*analog\\d{1,2}"
-				},
-				{
-					"name": "support.type",
-					"match": "[\\^~!]*(z:)?[a-zA-Z]{1,2}\\d{1,2}(\\.\\d{1,2})?"
+					"match": "(?i)[\\^~!]*(z:)?[a-z]{1,2}\\d{1,2}(\\.\\d{1,2})?"
 				}
 			]
 		},
