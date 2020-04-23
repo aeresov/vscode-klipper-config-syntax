@@ -10,6 +10,12 @@
 		},
 		{
 			"include": "#config_line"
+		},
+		{
+			"include": "#number"
+		},
+		{
+			"include": "#gcode_line"
 		}
 	],
 	"repository": {
@@ -95,49 +101,125 @@
 			]
 		},
 		"config_line": {
+			"begin": "^(\\w+)\\s*[:=]\\s*",
+			"beginCaptures": {
+				"1": {
+					"name": "variable.name"
+				}
+			},
+			"end": "$",
 			"patterns": [
 				{
-					"begin": "^(\\w+)\\s*[:=]\\s*",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.name"
-						}
-					},
-					"end": "$",
-					"patterns": [
-						{
-							"include": "#known_thermistor_type"
-						},
-						{
-							"include": "#known_extruder_sensor_type"
-						},
-						{
-							"include": "#known_control_type"
-						},
-						{
-							"include": "#known_display_type"
-						},
-						{
-							"include": "#pin"
-						},
-						{
-							"include": "#serial"
-						},
-						{
-							"include": "#number"
-						},
-						{
-							"include": "#boolean"
-						},
-						{
-							"include": "#single_line_comment"
-						}
-					]
+					"include": "#known_thermistor_type"
+				},
+				{
+					"include": "#known_extruder_sensor_type"
+				},
+				{
+					"include": "#known_control_type"
+				},
+				{
+					"include": "#known_display_type"
+				},
+				{
+					"include": "#pin"
+				},
+				{
+					"include": "#serial"
 				},
 				{
 					"include": "#number"
+				},
+				{
+					"include": "#boolean"
+				},
+				{
+					"include": "#single_line_comment"
 				}
 			]
+		},
+		"gcode_line": {
+			"patterns": [
+				{
+					"include": "#gcode_command"
+				},
+				{
+					"include": "#gcode_extended_command"
+				},
+				{
+					"include": "#gcode_parameter"
+				},
+				{
+					"include": "#gcode_extended_parameter"
+				},
+				{
+					"include": "#gcode_macro_block"
+				}
+			]
+		},
+		"gcode_command": {
+			"begin": "(?ix)^\\s* ([GMTD]) (?![a-z])",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.operator"
+				}
+			},
+			"end": "\\s",
+			"patterns": [
+				{
+					"include": "#number"
+				},
+				{
+					"include": "#gcode_macro_block"
+				}
+			]
+		},
+		"gcode_parameter": {
+			"begin": "(?ix)\\b ([a-z]) (?![a-z])",
+			"beginCaptures": {
+				"1": {
+					"name": "variable.parameter"
+				}
+			},
+			"end": "\\s",
+			"patterns": [
+				{
+					"include": "#number"
+				},
+				{
+					"include": "#gcode_macro_block"
+				}
+			]
+		},
+		"gcode_extended_command": {
+			"name": "keyword.operator",
+			"match": "(?i)^\\s*(ABORT|ACCEPT|ACTIVATE_EXTRUDER|BED_MESH_CALIBRATE|BED_MESH_CLEAR|BED_MESH_MAP|BED_MESH_OUTPUT|BED_MESH_PROFILE|BED_SCREWS_ADJUST|BED_TILT_CALIBRATE|BLTOUCH_DEBUG|BLTOUCH_STORE|CALC_MEASURED_SKEW|CLEAR_PAUSE|DELTA_ANALYZE|DELTA_CALIBRATE|DUMP_TMC|ENDSTOP_PHASE_CALIBRATE|FIRMWARE_RESTART|FORCE_MOVE|GET_CURRENT_SKEW|GET_POSITION|GET_RETRACTION|HELP|MANUAL_PROBE|MANUAL_STEPPER|PAUSE|PID_CALIBRATE|PROBE|PROBE_ACCURACY|PROBE_CALIBRATE|QUAD_GANTRY_LEVEL|QUERY_ADC|QUERY_ENDSTOPS|QUERY_FILAMENT_SENSOR|QUERY_PROBE|RESPOND|RESTART|RESTORE_GCODE_STATE|RESUME|SAVE_CONFIG|SAVE_GCODE_STATE|SCREWS_TILT_CALCULATE|SET_DUAL_CARRIAGE|SET_EXTRUDER_STEP_DISTANCE|SET_FILAMENT_SENSOR|SET_GCODE_OFFSET|SET_GCODE_VARIABLE|SET_HEATER_TEMPERATURE|SET_IDLE_TIMEOUT|SET_KINEMATIC_POSITION|SET_LED|SET_PIN|SET_PRESSURE_ADVANCE|SET_RETRACTION|SET_SERVO|SET_SKEW|SET_STEPPER_ENABLE|SET_TMC_CURRENT|SET_TMC_FIELD|SET_VELOCITY_LIMIT|SKEW_PROFILE|STATUS|STEPPER_BUZZ|TESTZ|TUNING_TOWER|TURN_OFF_HEATERS|UPDATE_DELAYED_GCODE|Z_ENDSTOP_CALIBRATE|Z_TILT_ADJUST)\\s"
+		},
+		"gcode_extended_parameter": {
+			"begin": "(?i)\\b(AC|ACCEL|ACCEL_TO_DECEL|AD|ADVANCE|ANGLE|BAND|BD|BLUE|CARRIAGE|CLEAR|COMMAND|CURRENT|DISTANCE|DURATION|ENABLE|EXTRUDER|FACTOR|FIELD|GREEN|HEATER|HOLDCURRENT|ID|INDEX|LED|LIFT_SPEED|LOAD|MACRO|METHOD|MODE|MOVE_SPEED|MSG|NAME|PARAMETER|PGP|PIN|PREFIX|PROBE_SPEED|PULLUP|RED|REMOVE|RETRACT_LENGTH|RETRACT_SPEED|SAMPLE_RETRACT_DIST|SAMPLES|SAMPLES_RESULT|SAMPLES_TOLERANCE|SAMPLES_TOLERANCE_RETRIES|SAVE|SENSOR|SERVO|SET_POSITION|SMOOTH_TIME|SPEED|SQUARE_CORNER_VELOCITY|START|STEPPER|STOP_ON_ENDSTOP|SYNC|TARGET|TIMEOUT|TRANSMIT|TYPE|UNRETRACT_EXTRA_LENGTH|UNRETRACT_SPEED|VALUE|VARIABLE|VELOCITY|WIDTH|WRITE_FILE|X|X_ADJUST|XY|XZ|Y|Y_ADJUST|YZ|Z|Z_ADJUST)=",
+			"beginCaptures": {
+				"1": {
+					"name": "variable.parameter"
+				}
+			},
+			"end": "\\s",
+			"patterns": [
+				{
+					"name": "constant.language",
+					"match": "(?i)(5V|average|command|echo|error|manual|median|OD|output_mode_store|pin_down|pin_up|reset|self_test|set_5V_output_mode|set_5V_output_mode|set_OD_output_mode|touch_mode)"
+				},
+				{
+					"include": "#number"
+				},
+				{
+					"include": "#gcode_macro_block"
+				}
+			]
+		},
+		"gcode_macro_block": {
+			"name": "string.unquoted",
+			"begin": "{",
+			"end": "}"
 		}
 	},
 	"scopeName": "source.klipper-config"
