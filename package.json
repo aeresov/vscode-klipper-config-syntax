@@ -2,7 +2,7 @@
     "name": "klipper-config",
     "displayName": "Klipper Config",
     "description": "Syntax highlighting for Klipper config files",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "publisher": "aeresov",
     "license": "read LICENSE file",
     "engines": {
